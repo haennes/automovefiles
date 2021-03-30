@@ -75,6 +75,6 @@ for i in files:
                 if b.find(iii)!= -1 or b.find(iii.lower())!= -1: # if so
                     found = True
             if found:  
-                print(source+"/"+i,source+"/"+classes[ii][0]+"/"+i)
+                print(source+"/"+i,dest+"/"+classes[ii][0]+"/"+i)
                 shutil.move(source+"/"+i,dest+"/"+classes[ii][0]+"/"+i) # move it
 
