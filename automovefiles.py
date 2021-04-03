@@ -50,6 +50,7 @@ def make_config_classes_aliases(current_class_name):
             all_aliases_for_class.append(current_alias_for_current_class)
             print("entered aliases for ",current_class_name,":" , all_aliases_for_class)
         else: print("all aliases for ",current_class_name,"entered :",all_aliases_for_class)
+    all_aliases_for_class.insert(0,current_class_name)
     return all_aliases_for_class
 
 def make_config():
@@ -59,29 +60,8 @@ def make_config():
 
     config_ignore_upper_and_lower_case = make_config_case()
 
-    all_classes_entered = False
-    all_classes = []
-    while not all_classes_entered:
-        current_class_name = input("type the folder-name of the class (Example: English) (if you are done press enter)").strip()
-        all_classes_entered = not (current_class_name and current_class_name.strip())
-        if all_classes_entered:
-            break
-        all_aliases_for_class_entered = False
-        all_aliases_for_class = []
-        print("next you can enter aliases for the subject")
-        while not all_aliases_for_class_entered:
-            current_alias_for_current_class = input("Please enter another alias for the subject (if you are done press enter)").strip()
-            all_aliases_for_class_entered = not (current_alias_for_current_class and current_alias_for_current_class.strip())
-            if not all_aliases_for_class_entered:
-                all_aliases_for_class.append(current_alias_for_current_class)
-                print("entered aliases for ",current_class_name,":" , all_aliases_for_class)
-            else: print("all aliases for ",current_class_name,"entered :",all_aliases_for_class)
-        all_aliases_for_class.insert(0,current_class_name)
-        if not all_classes_entered:
-            all_classes.append(all_aliases_for_class)
-        else: print("setup done")
-
-
+    all_classes = make_config_classes()
+    print("setup done")
 
     save_config(all_classes,config_source,config_dest,config_ignore_upper_and_lower_case)
 
