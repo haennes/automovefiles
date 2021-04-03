@@ -76,13 +76,20 @@ def change_config():
         print("current classes",current_classes)
         classes_to_change_indexes = input("what class(es) do you want to change ? (seperate them by a space) (enter the indexes (1 = first))").split()
         for i in classes_to_change_indexes:
-            aliases_to_change_indexes = input("what aliases do you want to change ? (seperate them by a space) (0 for Foldername)").split()
-            for ii in aliases_to_change_indexes:
-                new_alias = input("Enter the name you want "+ ii +"to change to. (space to remove)").split()[0]
-                if new_alias == "":
-                    current_classes[i].pop(ii)
-                else:
-                    current_classes[int(i)][int(ii)] = new_alias
+            delete_class = bool(int(input("do you want to delete this class ? (Yes 1 ,No 0)")))
+            if delete_class:
+                current_classes.pop(int(i))
+            else:
+                aliases_to_change_indexes = input("what aliases do you want to change ? (seperate them by a space) (0 for Foldername)").split()
+                for ii in aliases_to_change_indexes:
+                    delete_alias = bool(int(input("do you want to delete this alias ? (Yes 1 ,No 0)")))
+                    if delete_alias:
+                        current_classes[int(i)].pop(int(ii))
+                    new_alias = input("Enter the name you want "+ ii +"to change to. (space to remove)").split()[0]
+                    if new_alias == "":
+                        current_classes[i].pop(ii)
+                    else:
+                        current_classes[int(i)][int(ii)] = new_alias
 
 
     if "source" in change_what:
