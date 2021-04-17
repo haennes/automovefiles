@@ -26,7 +26,7 @@ def make_config_path(message):
             return path
 
 def make_config_case():
-    ignore_upper_and_lower_case = bool(input("should upper and lower case be ignored (1 Yes, 0 No)"))
+    ignore_upper_and_lower_case = bool(int(input("should upper and lower case be ignored (1 Yes, 0 No)")))
     return ignore_upper_and_lower_case
 
 def make_config_classes():
@@ -74,7 +74,7 @@ def change_config():
     
     if  "classes" in change_what:
         print("current classes",current_classes)
-        classes_to_change_indexes = input("what class(es) do you want to change ? (seperate them by a space) (enter the indexes (1 = first))").split()
+        classes_to_change_indexes = input("what class(es) do you want to change ? (seperate them by a space) (enter the indexes (0 = first))").split()
         for i in classes_to_change_indexes:
             delete_class = bool(int(input("do you want to delete this class ? (Yes 1 ,No 0)")))
             if delete_class:
@@ -85,7 +85,8 @@ def change_config():
                     delete_alias = bool(int(input("do you want to delete this alias ? (Yes 1 ,No 0)")))
                     if delete_alias:
                         current_classes[int(i)].pop(int(ii))
-                    new_alias = input("Enter the name you want "+ ii +"to change to. (space to remove)").split()[0]
+                        continue
+                    new_alias = input("Enter the name you want "+ ii +"to change to.").split()[0]
                     if new_alias == "":
                         current_classes[i].pop(ii)
                     else:
@@ -107,6 +108,7 @@ classes, source, dest, ignore_upper_and_lower_case = load_config()
 
 if bool(int(input("would you like to change the current config ? (1 Yes, 0 No)"))):
     change_config()
+    classes, source, dest, ignore_upper_and_lower_case = load_config()
 print(load_config())
 files = os.listdir(source)
 print(files)
@@ -123,6 +125,6 @@ for i in files:
                 if b.find(iii)!= -1 or b.find(iii.lower())!= -1: # if so
                     found = True
             if found:  
-                print(source+"/"+i,dest+"/"+classes[ii][0]+"/"+i)
+                print(source+"/"+i,"->",dest+"/"+classes[ii][0]+"/"+i)
                 shutil.move(source+"/"+i,dest+"/"+classes[ii][0]+"/"+i) # move it
 
