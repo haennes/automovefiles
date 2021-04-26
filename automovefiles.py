@@ -92,7 +92,9 @@ def change_config():
         print("current classes",current_classes)
         add_class = bool(int(input("do you want to add a class ? (Yes 1,No 0)")))
         if add_class:
-            pass # TODO myabe add it later
+            class_name = input("What should the class be called ?")
+            aliases = make_config_classes(class_name)
+            current_classes.append(aliases)
         classes_to_change_indexes = input("what class(es) do you want to change ? (seperate them by a space) (enter the indexes (0 = first))").split()
         for i in classes_to_change_indexes:
             delete_class = bool(int(input("do you want to delete the class "+current_classes[int(i)][0]+"? (Yes 1 ,No 0)")))
