@@ -52,7 +52,7 @@ def make_config_classes():
 def make_config_classes_aliases(current_class_name):
     all_aliases_for_class_entered = False
     all_aliases_for_class = []
-    print("next you can enter aliases for the subject")
+    print("next you can enter aliases for the subject"+current_class_name)
     while not all_aliases_for_class_entered:
         current_alias_for_current_class = input("Please enter another alias for the subject (if you are done press enter)").strip()
         all_aliases_for_class_entered = not (current_alias_for_current_class and current_alias_for_current_class.strip())
@@ -139,7 +139,7 @@ save_config(classes,source,dest,ignore_upper_and_lower_case,confirmation_needed)
 if bool(int(input("would you like to change the current config ? (1 Yes, 0 No)"))):
     change_config()
     classes, source, dest, ignore_upper_and_lower_case, confirmation_needed = load_config()
-print(load_config())
+
 print_list_pretty("-",load_config(),0)
 files = os.listdir(source)
 print(files)
