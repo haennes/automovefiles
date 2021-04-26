@@ -99,6 +99,11 @@ def change_config():
             if delete_class:
                 current_classes.pop(int(i))
             else:
+                add_alias = bool(int(input("do you want to add a alias ? (Yes 1,No 0)")))
+                if add_alias:
+                    alias_names = input("what aliases should be added (seperate by spaces)").split()
+                    for alias_name in alias_names:
+                        current_classes[int(i)].append(alias_name)
                 aliases_to_change_indexes = input("what aliases do you want to change ? current aliases: "+str(current_classes[int(i)])+" (seperate them by a space) (0 for Foldername)").split()
                 for ii in aliases_to_change_indexes:
                     delete_alias = bool(int(input("do you want to delete the alias "+current_classes[int(i)][int(ii)]+" ? (Yes 1 ,No 0)")))
